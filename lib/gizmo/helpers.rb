@@ -3,7 +3,6 @@ module Gizmo
   module Helpers
 
     def on_page &block
-      body = body
       raise NilResponseError, "Doh! response object is nil. This generally means your scenario has not yet visited a page!" if body.nil?
       yield Page.new(self, body, current_url)
     end
