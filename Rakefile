@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'rake'
+require 'bundler/gem_tasks'
 
 begin
   require 'jeweler'
@@ -17,7 +16,7 @@ begin
     gem.add_development_dependency "metric_fu", ">= 1.3.0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
     gem.add_dependency "nokogiri", ">= 1.4.1"
-    gem.add_dependency "activesupport", "~> 2.3.5"
+    gem.add_dependency "activesupport", ">= 3.0.17"
     gem.add_dependency "tilt", ">= 1.0.1"
   end
   Jeweler::GemcutterTasks.new
@@ -40,13 +39,13 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.rcov_opts = ['--failure-threshold', 100, '--exclude', 'features,.gems']
 end
 
-task :spec => :check_dependencies
+task :spec
 
 begin
   require 'cucumber/rake/task'
   Cucumber::Rake::Task.new(:features)
 
-  task :features => :check_dependencies
+  task :features
 rescue LoadError
   task :features do
     abort "Cucumber is not available. In order to run features, you must: sudo gem install cucumber"
@@ -80,7 +79,7 @@ end
 
 task :default => :spec
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 

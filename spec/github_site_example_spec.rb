@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../features/support/patches/
 Capybara.default_driver = :selenium
 Capybara.run_server = false
 Spec::Runner.configure do |config|
-  config.include Capybara
+  config.include Capybara::DSL
 end
 
 
@@ -15,23 +15,17 @@ describe "Github" do
 
   before do
     Gizmo.configure do |config|
-      config.mixin_dir = File.join(File.dirname(__FILE__), '../features/support/pages/')
+      config.mixin_dir = File.expand_path(File.dirname(__FILE__) + '/../features/support/pages')
     end
   end
 
   describe "Home Page Search" do
 
-    before(:all) { visit 'http://github.com' }
+    before(:all) { visit 'http://github.com/search' }
 
     it "should have a text input which accepts a search query" do
       on_page_with :github_search do |page|
         page.perform :search, 'gizmo'
-      end
-    end
-
-    it "should perform a search when clicking the magnifying glass" do
-      on_page_with :github_search do |page|
-        click page.search_form.submit.attr('alt').value
       end
     end
 
