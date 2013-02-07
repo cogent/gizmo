@@ -1,5 +1,7 @@
 source "http://rubygems.org"
 
+gemspec
+
 # gem 'rspec', '~> 1.3.0'
 # gem 'cucumber', '~> 1.2.1'
 # gem 'capybara', '~> 1.1.2'

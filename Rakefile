@@ -18,6 +18,7 @@ begin
     gem.add_dependency "nokogiri", ">= 1.4.1"
     gem.add_dependency "activesupport", ">= 3.0.17"
     gem.add_dependency "tilt", ">= 1.0.1"
+    gem.add_dependency "term-ansicolor", "~> 1.0.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
